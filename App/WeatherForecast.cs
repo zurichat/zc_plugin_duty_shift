@@ -1,6 +1,6 @@
 using System;
 
-namespace ShiftTracker
+namespace App
 {
     public class WeatherForecast
     {

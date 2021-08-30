@@ -1,5 +1,6 @@
 # zc_plugin_duty_shift_dotnet
 Company Duty Shift plugin for zuri Chat
+
 When you intend to add a feature, 
 1. Clone the repository from develop branch
 2. Run using dotnet run
@@ -9,3 +10,5 @@ When you intend to add a feature,
 5. Make a pull request between the new branch and develop
 
 New Branch - > Development - > Master (Final approval)
+
+

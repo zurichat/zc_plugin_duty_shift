@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ShiftTracker.Controllers
+namespace App.Controllers
 {
     [ApiController]
     [Route("[controller]")]

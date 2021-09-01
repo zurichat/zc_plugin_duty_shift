@@ -9,7 +9,12 @@ namespace App.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+<<<<<<< Updated upstream:App/controllers/AdminController.cs
     public class AdminController : ControllerBase
+=======
+    [Route("api/[controller]")]
+    public class WeatherForecastController : ControllerBase
+>>>>>>> Stashed changes:App/Controllers/WeatherForecastController.cs
     {
         private static readonly string[] Summaries = new[]
         {
@@ -23,6 +28,7 @@ namespace App.Controllers
             _logger = logger;
         }
 
+        //GET /api/weatherforecast
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {

@@ -16,44 +16,44 @@ namespace App.Controllers
         private static Shift[] UserShifts = 
         {
            new Shift {
-               ShiftName="Morning Shift",
+               ShiftTitle="Morning Shift",
                DateCreated = new DateTime(2021,09,02),
-               DepartmentID = 1,
+               LeadById = 1,
                TimeStart = "12:00 hr",
                TimeEnd = "18:00 hr"
            },
            new Shift {
-               ShiftName="Morning Shift",
+               ShiftTitle="Morning Shift",
                DateCreated = new DateTime(2021,09,01),
-               DepartmentID = 2,
+               LeadById = 2,
                TimeStart = "12:00 hr",
                TimeEnd = "18:00 hr"
            },
            new Shift {
-               ShiftName="Morning Shift",
+               ShiftTitle="Morning Shift",
                DateCreated = new DateTime(2021,08,02),
-               DepartmentID = 3,
+               LeadById = 3,
                TimeStart = "12:00 hr",
                TimeEnd = "18:00 hr"
            },
            new Shift {
-               ShiftName="Afternoon Shift",
+               ShiftTitle="Afternoon Shift",
                DateCreated = new DateTime(2021,07,02),
-               DepartmentID = 1,
+               LeadById = 1,
                TimeStart = "12:00 hr",
                TimeEnd = "18:00 hr"
            },
            new Shift {
-               ShiftName="Afternoon Shift",
+               ShiftTitle="Afternoon Shift",
                DateCreated = new DateTime(2021,09,02),
-               DepartmentID = 2,
+               LeadById = 2,
                TimeStart = "12:00 hr",
                TimeEnd = "18:00 hr"
            },
            new Shift {
-               ShiftName="Afternoon Shift",
+               ShiftTitle="Afternoon Shift",
                DateCreated = new DateTime(2021,09,02),
-               DepartmentID = 3,
+               LeadById = 3,
                TimeStart = "12:00 hr",
                TimeEnd = "18:00 hr"
            }

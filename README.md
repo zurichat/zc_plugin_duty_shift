@@ -15,4 +15,4 @@ When you intend to add a feature,
 
 ###### New Branch - > Development - > Master (Final approval)
 
-In order to contribute please follow the following [Contribution Guide](https://github.com/zurichat/zc_plugin_duty_shift_dotnet/wiki/Contribution-Guide)
+In order to contribute please follow this guide [Contribution Guide](https://github.com/zurichat/zc_plugin_duty_shift_dotnet/wiki/Contribution-Guide)

@@ -1,4 +1,4 @@
-﻿using App.Models;
+using App.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
@@ -13,7 +13,7 @@ namespace App.Controllers
     [Route("api/[controller]")]
     public class ShiftController : Controller
     {
-        private static IMongoCollection<Shift> _shiftCollection;
+        private  static IMongoCollection<Shift> _shiftCollection;
 
         public ShiftController(IMongoClient client)
         {
@@ -27,7 +27,7 @@ namespace App.Controllers
         public IEnumerable<Shift> Get()
         {
             //return View();
-            return _shiftCollection.Find(_ => true).ToList();
+            return _shiftCollection.Find(_=>true).ToList();
         }
 
         // GET: ShiftController/Details/5

@@ -1,7 +1,6 @@
 # zc_plugin_duty_shift_dotnet
 Company Duty Shift plugin for zuri Chat
-
-When you intend to add a feature, 
+To run the project :
 1. Clone the repository from develop branch
 2. <code>cd</code> into the <code>app/clientapp</code>  directory
 3. Run <code> npm install </code>

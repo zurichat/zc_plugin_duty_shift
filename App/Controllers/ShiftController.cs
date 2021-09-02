@@ -56,7 +56,7 @@ namespace App.Controllers
                LeadById = 3,
                TimeStart = "12:00 hr",
                TimeEnd = "18:00 hr",
-               
+               CreatedById = 1
            }
         };
 

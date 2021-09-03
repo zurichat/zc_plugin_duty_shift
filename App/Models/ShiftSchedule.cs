@@ -1,23 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace App.Models
 {
     public class ShiftSchedule
     {
-        public int Id { get; set; }
-        [Required]
-        public int InvitedById { get; set; }
-        [Required]
-        public int UserId { get; set; }
-        [Required]
-        public int ShiftId { get; set; }
-        [Required]
-        public int AssignedById { get; set; }
-        [Required]
+        [BsonId]
+        public ObjectId Id { get; set; }
+        [BsonRequired]
+        public ObjectId InvitedById { get; set; }
+        [BsonRequired]
+        public ObjectId UserId { get; set; }
+        [BsonRequired]
+        public ObjectId ShiftId { get; set; }
+        [BsonRequired]
+        public ObjectId AssignedById { get; set; }
+        [BsonRequired]
         public DateTime DateAssigned { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MongoDB.Driver;
 
 namespace App
 {
@@ -22,6 +23,13 @@ namespace App
         {
 
             services.AddControllersWithViews();
+
+            services.AddSingleton<IMongoClient, MongoClient>(s =>
+            {
+                //var uri = s.GetRequiredService<IConfiguration>()["zuri_tracker_conn"];
+                var uri = "mongodb+srv://abisoyeola:beyourself@cluster0.s55iy.mongodb.net/zuri_tracker?retryWrites=true&w=majority";
+                return new MongoClient(uri);
+            });
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

@@ -1,79 +1,33 @@
-﻿using Microsoft.AspNetCore.Http;
+using App.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using App.Models;
 
 namespace App.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ShiftController : Controller
     {
-        private static Shift[] UserShifts = 
-        {
-           new Shift {
-               ShiftTitle="Morning Shift",
-               DateCreated = new DateTime(2021,09,02),
-               LeadById = 1,
-               TimeStart = "12:00 hr",
-               TimeEnd = "18:00 hr"
-           },
-           new Shift {
-               ShiftTitle="Morning Shift",
-               DateCreated = new DateTime(2021,09,01),
-               LeadById = 2,
-               TimeStart = "12:00 hr",
-               TimeEnd = "18:00 hr"
-           },
-           new Shift {
-               ShiftTitle="Morning Shift",
-               DateCreated = new DateTime(2021,08,02),
-               LeadById = 3,
-               TimeStart = "12:00 hr",
-               TimeEnd = "18:00 hr"
-           },
-           new Shift {
-               ShiftTitle="Afternoon Shift",
-               DateCreated = new DateTime(2021,07,02),
-               LeadById = 1,
-               TimeStart = "12:00 hr",
-               TimeEnd = "18:00 hr"
-           },
-           new Shift {
-               ShiftTitle="Afternoon Shift",
-               DateCreated = new DateTime(2021,09,02),
-               LeadById = 2,
-               TimeStart = "12:00 hr",
-               TimeEnd = "18:00 hr"
-           },
-           new Shift {
-               ShiftTitle="Afternoon Shift",
-               DateCreated = new DateTime(2021,09,02),
-               LeadById = 3,
-               TimeStart = "12:00 hr",
-               TimeEnd = "18:00 hr",
-               CreatedById = 1
-           }
-        };
+        private  static IMongoCollection<Shift> _shiftCollection;
 
-        private readonly ILogger<ShiftController> _logger;
-
-        public ShiftController(ILogger<ShiftController> logger)
+        public ShiftController(IMongoClient client)
         {
-            _logger = logger;
+            var database = client.GetDatabase("zuri_tracker");
+            _shiftCollection = database.GetCollection<Shift>("shift");
         }
 
-        
 
-        // GET: ShiftController
         [HttpGet]
+        // GET: ShiftController
         public IEnumerable<Shift> Get()
         {
-            return UserShifts.ToList();
+            //return View();
+            return _shiftCollection.Find(_=>true).ToList();
         }
 
         // GET: ShiftController/Details/5

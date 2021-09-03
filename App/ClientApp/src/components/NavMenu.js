@@ -40,6 +40,9 @@ export class NavMenu extends Component {
               <NavItem>
                 <NavLink tag={Link} className="text-light" to="/"> Settings</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink tag={Link} className="text-light" to="/fetch-data-copy"> ZcCoreTest</NavLink>
+              </NavItem>
             </Nav>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>

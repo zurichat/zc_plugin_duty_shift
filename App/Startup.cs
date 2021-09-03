@@ -36,6 +36,9 @@ namespace App
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            //HttpClient for ZcCoreDataService
+            services.AddHttpClient<ZcCoreDataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

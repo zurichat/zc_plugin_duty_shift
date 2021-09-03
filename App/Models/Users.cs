@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,14 +10,14 @@ namespace App.Models
 {
     public class Users
     {
-        public int Id { get; set; }
-        [Required]
-        public string ZuriUserId { get; set; }
-        [Required]
-        public UserTypes UserTypeId { get; set; }
-        [Required]
-        public int InvitedById { get; set; }
-        [Required]
+        [BsonId]
+        public ObjectId Id { get; set; }
+        public ObjectId ZuriUserId { get; set; }
+        [BsonRequired]
+        public ObjectId UserTypeId { get; set; }
+        [BsonRequired]
+        public ObjectId InvitedById { get; set; }
+        [BsonRequired]
         public DateTime TimeJoined { get; set; }
     }
 }

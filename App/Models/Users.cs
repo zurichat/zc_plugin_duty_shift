@@ -15,7 +15,7 @@ namespace App.Models
         public string Id { get; set; }
         public string ZuriUserId { get; set; }
         [BsonRequired]
-        public string UserType { get; set; } // super admin, user, guest
+        public string UserType { get; set; } // super-admin, user, guest
         
         public string InvitedById { get; set; }
         [BsonRequired]

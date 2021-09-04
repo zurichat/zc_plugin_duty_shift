@@ -18,7 +18,9 @@ namespace App.Controllers
         public ShiftController(IMongoClient client)
         {
             var database = client.GetDatabase("zuri_tracker");
-            _shiftCollection = database.GetCollection<Shift>("testshift");
+            //database.DropCollection("shift");
+            _shiftCollection = database.GetCollection<Shift>("shift");
+            
         }
 
 

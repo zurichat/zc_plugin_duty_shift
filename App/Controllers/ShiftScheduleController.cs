@@ -19,7 +19,8 @@ namespace App.Controllers
         public ShiftScheduleController(IMongoClient client)
         {
             var database = client.GetDatabase("zuri_tracker");
-            _shiftScheduleCollection = database.GetCollection<ShiftSchedule>("testShiftSchedule");
+            //database.DropCollection("ShiftSchedule");
+            _shiftScheduleCollection = database.GetCollection<ShiftSchedule>("ShiftSchedule");
         }
 
         // GET: api/<ShiftScheduleController>

@@ -19,7 +19,8 @@ namespace App.Controllers
         public UsersController(IMongoClient client)
         {
             var database = client.GetDatabase("zuri_tracker");
-            _usersCollection = database.GetCollection<Users>("test4Users");
+            //database.DropCollection("Users");
+            _usersCollection = database.GetCollection<Users>("Users");
         }
         // GET: api/<UsersController>
         [HttpGet]

@@ -14,18 +14,18 @@ namespace App.Controllers
     [ApiController]
     public class UserTypesController : ControllerBase
     {
-        private static IMongoCollection<UserTypes> _shiftCollection;
+        private static IMongoCollection<UserTypes> _userTypesCollection;
 
         public UserTypesController(IMongoClient client)
         {
             var database = client.GetDatabase("zuri_tracker");
-            _shiftCollection = database.GetCollection<UserTypes>("userstypes");
+            _userTypesCollection = database.GetCollection<UserTypes>("testuserstypes");
         }
         // GET: api/<UserTypesController>
         [HttpGet]
         public IEnumerable<UserTypes> Get()
         {
-            return _shiftCollection.Find(_ => true).ToList();
+            return _userTypesCollection.Find(_ => true).ToList();
         }
 
         // GET api/<UserTypesController>/5
@@ -51,6 +51,12 @@ namespace App.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+
+        public void Add([FromForm] string value)
+        {
+            //var newType = _userTypesCollection.InsertOne(new UserTypes { Types = value});
         }
     }
 }

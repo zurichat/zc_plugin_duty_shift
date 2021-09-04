@@ -11,12 +11,13 @@ namespace App.Models
     public class Users
     {
         [BsonId]
-        public ObjectId Id { get; set; }
-        public ObjectId ZuriUserId { get; set; }
+        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        public string Id { get; set; }
+        public string ZuriUserId { get; set; }
         [BsonRequired]
-        public ObjectId UserTypeId { get; set; }
-        [BsonRequired]
-        public ObjectId InvitedById { get; set; }
+        public string UserType { get; set; } // super admin, user, guest
+        
+        public string InvitedById { get; set; }
         [BsonRequired]
         public DateTime TimeJoined { get; set; }
     }

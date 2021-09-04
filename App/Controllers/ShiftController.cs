@@ -18,7 +18,7 @@ namespace App.Controllers
         public ShiftController(IMongoClient client)
         {
             var database = client.GetDatabase("zuri_tracker");
-            _shiftCollection = database.GetCollection<Shift>("shift");
+            _shiftCollection = database.GetCollection<Shift>("testshift");
         }
 
 
@@ -44,17 +44,9 @@ namespace App.Controllers
 
         // POST: ShiftController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async void Create([FromForm]Shift shift)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await _shiftCollection.InsertOneAsync(shift);
         }
 
         // GET: ShiftController/Edit/5
@@ -63,20 +55,7 @@ namespace App.Controllers
             return View();
         }
 
-        // POST: ShiftController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
 
         // GET: ShiftController/Delete/5
         public ActionResult Delete(int id)
@@ -84,19 +63,6 @@ namespace App.Controllers
             return View();
         }
 
-        // POST: ShiftController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }

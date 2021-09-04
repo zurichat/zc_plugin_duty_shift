@@ -1,5 +1,4 @@
-﻿using App.DTOs;
-using App.Models;
+﻿using App.Models;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;

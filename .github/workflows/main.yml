@@ -1,0 +1,20 @@
+name: Continuous deployment
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy tracker.zuri.chat
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{ secrets.IP_ADDRESS }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /var/www/zc_plugin_duty_shift_dotnet/App
+            git pull
+            sudo systemctl restart dotnet

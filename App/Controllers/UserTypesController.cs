@@ -14,25 +14,26 @@ namespace App.Controllers
     [ApiController]
     public class UserTypesController : ControllerBase
     {
-        private static IMongoCollection<UserTypes> _shiftCollection;
+        private static IMongoCollection<UserTypes> _userTypesCollection;
 
         public UserTypesController(IMongoClient client)
         {
             var database = client.GetDatabase("zuri_tracker");
-            _shiftCollection = database.GetCollection<UserTypes>("userstypes");
+            //database.DropCollection("userstypes");
+            _userTypesCollection = database.GetCollection<UserTypes>("userstypes");
         }
         // GET: api/<UserTypesController>
         [HttpGet]
         public IEnumerable<UserTypes> Get()
         {
-            return _shiftCollection.Find(_ => true).ToList();
+            return _userTypesCollection.Find(_ => true).ToList();
         }
 
         // GET api/<UserTypesController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {            
-            var userType = await _shiftCollection.Find<UserTypes>(u=>u.Id==id).FirstOrDefaultAsync();
+            var userType = await _userTypesCollection.Find<UserTypes>(u=>u.Id==id).FirstOrDefaultAsync();
             return Ok(userType);
         }
 
@@ -46,7 +47,7 @@ namespace App.Controllers
                 return BadRequest();
             }
                 
-            await _shiftCollection.InsertOneAsync(new UserTypes{Types=type});
+            await _userTypesCollection.InsertOneAsync(new UserTypes{Types=type});
             return Ok("Added new UserType Successfully");
             
         }
@@ -59,8 +60,23 @@ namespace App.Controllers
 
         // DELETE api/<UserTypesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
+            var deleted = await _userTypesCollection.DeleteOneAsync(s => s.Id == id);
+            if (deleted.IsAcknowledged && deleted.DeletedCount > 0)
+            {
+                return Ok("Deleted");
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+
+        public void Add([FromForm] string value)
+        {
+            //var newType = _userTypesCollection.InsertOne(new UserTypes { Types = value});
         }
     }
 }

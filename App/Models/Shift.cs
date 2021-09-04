@@ -11,7 +11,8 @@ namespace App.Models
     public class Shift
     {
         [BsonId]
-        public ObjectId Id { get; set; }
+        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        public string Id { get; set; }
         [BsonRequired]
         public string ShiftTitle { get; set; }
         [BsonRequired]
@@ -19,11 +20,12 @@ namespace App.Models
         [BsonRequired]
         public string TimeEnd { get; set; }
         [BsonRequired]
-        public ObjectId LeadById { get; set; }
+        public string LeadById { get; set; }
         [BsonRequired]
-        public ObjectId CreatedById { get; set; }
+        public string CreatedById { get; set; }    
         [BsonRequired]
         public bool Status { get; set; }
+        
         [BsonRequired]
         public DateTime DateCreated { get; set; }
     }

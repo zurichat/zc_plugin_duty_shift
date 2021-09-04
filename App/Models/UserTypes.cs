@@ -6,8 +6,7 @@ namespace App.Models
 {
     public class UserTypes
     {
-        [BsonId]
-        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         [BsonRequired]
         public string Types {get; set;}

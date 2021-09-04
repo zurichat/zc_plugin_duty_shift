@@ -29,18 +29,32 @@ namespace App.Controllers
             return _userTypesCollection.Find(_ => true).ToList();
         }
 
-        
+        // GET api/<UserTypesController>/5
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(string id)
+        {            
+            var userType = await _userTypesCollection.Find<UserTypes>(u=>u.Id==id).FirstOrDefaultAsync();
+            return Ok(userType);
+        }
 
         // POST api/<UserTypesController>
         [HttpPost]
-        public async void Post([FromBody] UserTypes types)
+        public async Task<IActionResult> Post([FromBody] UsertypeDto userType)
         {
-            await _userTypesCollection.InsertOneAsync(types);
+            var type = userType.Type.Trim();
+            if (string.IsNullOrEmpty(type))
+            {
+                return BadRequest();
+            }
+                
+            await _userTypesCollection.InsertOneAsync(new UserTypes{Types=type});
+            return Ok("Added new UserType Successfully");
+            
         }
 
         // PUT api/<UserTypesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] UsertypeDto value)
         {
         }
 

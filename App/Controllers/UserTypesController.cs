@@ -1,5 +1,7 @@
-﻿using App.Models;
+﻿using App.DTOs;
+using App.Models;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -41,10 +43,20 @@ namespace App.Controllers
         {
         }
 
-        // PUT api/<UserTypesController>/5
+        // PATCH api/<UserTypesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> UpdateUserType([FromBody] UserTypes userType, string id)
         {
+            userType.Id = id; //  set the id field of the obtained object
+            var updated = await _shiftCollection.ReplaceOneAsync(s => s.Id == id, userType);
+            if (updated.IsAcknowledged && updated.ModifiedCount > 0)
+            {
+                return Ok("Updated");
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         // DELETE api/<UserTypesController>/5

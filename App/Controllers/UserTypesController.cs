@@ -37,8 +37,9 @@ namespace App.Controllers
 
         // POST api/<UserTypesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async void Post([FromForm] UserTypes types)
         {
+            await _userTypesCollection.InsertOneAsync(types);
         }
 
         // PUT api/<UserTypesController>/5
@@ -49,8 +50,17 @@ namespace App.Controllers
 
         // DELETE api/<UserTypesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
+            var deleted = await _userTypesCollection.DeleteOneAsync(s => s.Id == id);
+            if (deleted.IsAcknowledged && deleted.DeletedCount > 0)
+            {
+                return Ok("Deleted");
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
 

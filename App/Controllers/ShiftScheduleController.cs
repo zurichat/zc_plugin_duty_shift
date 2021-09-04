@@ -59,8 +59,17 @@ namespace App.Controllers
 
         // DELETE api/<ShiftScheduleController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
+            var deleted = await _shiftScheduleCollection.DeleteOneAsync(s => s.Id == id);
+            if (deleted.IsAcknowledged && deleted.DeletedCount > 0)
+            {
+                return Ok("Deleted");
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

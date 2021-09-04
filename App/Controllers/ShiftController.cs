@@ -55,12 +55,22 @@ namespace App.Controllers
             return View();
         }
 
-        
+
 
         // GET: ShiftController/Delete/5
-        public ActionResult Delete(int id)
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
         {
-            return View();
+            var deleted = await _shiftCollection.DeleteOneAsync(s => s.Id == id);
+            if (deleted.IsAcknowledged && deleted.DeletedCount > 0)
+            {
+                return Ok("Deleted");
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         

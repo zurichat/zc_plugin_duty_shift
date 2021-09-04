@@ -19,7 +19,7 @@ namespace App.Controllers
         public UsersController(IMongoClient client)
         {
             var database = client.GetDatabase("zuri_tracker");
-            _usersCollection = database.GetCollection<Users>("testUsers");
+            _usersCollection = database.GetCollection<Users>("test4Users");
         }
         // GET: api/<UsersController>
         [HttpGet]
@@ -37,9 +37,9 @@ namespace App.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
-        public void Post([FromForm] Users user)
+        public async void Post([FromForm] Users user)
         {
-            _usersCollection.InsertOne(user);
+            await _usersCollection.InsertOneAsync(user);
         }
 
         // PUT api/<UsersController>/5
@@ -50,8 +50,17 @@ namespace App.Controllers
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
+            var deleted = await _usersCollection.DeleteOneAsync(s => s.Id == id);
+            if (deleted.IsAcknowledged && deleted.DeletedCount > 0)
+            {
+                return Ok("Deleted");
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

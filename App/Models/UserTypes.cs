@@ -8,8 +8,8 @@ namespace App.Models
     {
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
-        public ObjectId Id { get; set; }
+        public string Id { get; set; }
         [BsonRequired]
-        public string Types {get; set;}
+        public string Type {get; set;}
     }
 }

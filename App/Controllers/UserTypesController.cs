@@ -30,20 +30,30 @@ namespace App.Controllers
 
         // GET api/<UserTypesController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+        public async Task<IActionResult> Get(string id)
+        {            
+            var userType = await _shiftCollection.Find<UserTypes>(u=>u.Id==id).FirstOrDefaultAsync();
+            return Ok(userType);
         }
 
         // POST api/<UserTypesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] UsertypeDto userType)
         {
+            var type = userType.Type.Trim();
+            if (string.IsNullOrEmpty(type))
+            {
+                return BadRequest();
+            }
+                
+            await _shiftCollection.InsertOneAsync(new UserTypes{Types=type});
+            return Ok("Added new UserType Successfully");
+            
         }
 
         // PUT api/<UserTypesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] UsertypeDto value)
         {
         }
 

@@ -14,19 +14,18 @@ namespace App.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private static IMongoCollection<Users> _usersCollection;
+        private static IMongoCollection<Users> _shiftCollection;
 
         public UsersController(IMongoClient client)
         {
             var database = client.GetDatabase("zuri_tracker");
-            //database.DropCollection("Users");
-            _usersCollection = database.GetCollection<Users>("Users");
+            _shiftCollection = database.GetCollection<Users>("Users");
         }
         // GET: api/<UsersController>
         [HttpGet]
         public IEnumerable<Users> Get()
         {
-            return _usersCollection.Find(_ => true).ToList();
+            return _shiftCollection.Find(_ => true).ToList();
         }
 
         // GET api/<UsersController>/5
@@ -38,25 +37,20 @@ namespace App.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
-        public async void Post([FromBody] Users user)
+        public void Post([FromBody] string value)
         {
-            await _usersCollection.InsertOneAsync(user);
         }
 
+        // PUT api/<UsersController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
+        public void Delete(int id)
         {
-            var deleted = await _usersCollection.DeleteOneAsync(s => s.Id == id);
-            if (deleted.IsAcknowledged && deleted.DeletedCount > 0)
-            {
-                return Ok("Deleted");
-            }
-            else
-            {
-                return NotFound();
-            }
         }
     }
 }

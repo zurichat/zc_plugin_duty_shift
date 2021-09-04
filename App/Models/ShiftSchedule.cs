@@ -9,20 +9,15 @@ namespace App.Models
     public class ShiftSchedule
     {
         [BsonId]
-        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]//lets us use id as string
-        public string Id { get; set; }
+        public ObjectId Id { get; set; }
         [BsonRequired]
-        public string InvitedById { get; set; }
+        public ObjectId InvitedById { get; set; }
         [BsonRequired]
-        
-        public string UserId { get; set; }
+        public ObjectId UserId { get; set; }
         [BsonRequired]
-       
-        public string ShiftId { get; set; }
+        public ObjectId ShiftId { get; set; }
         [BsonRequired]
-        public string AssignedById { get; set; }
-        [BsonRequired]
-        public bool AcknowledgedByUser { get; set; }
+        public ObjectId AssignedById { get; set; }
         [BsonRequired]
         public DateTime DateAssigned { get; set; }
     }

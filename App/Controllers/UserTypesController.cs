@@ -14,28 +14,31 @@ namespace App.Controllers
     [ApiController]
     public class UserTypesController : ControllerBase
     {
-        private static IMongoCollection<UserTypes> _userTypesCollection;
+        private static IMongoCollection<UserTypes> _shiftCollection;
 
         public UserTypesController(IMongoClient client)
         {
             var database = client.GetDatabase("zuri_tracker");
-            //database.DropCollection("userstypes");
-            _userTypesCollection = database.GetCollection<UserTypes>("userstypes");
+            _shiftCollection = database.GetCollection<UserTypes>("userstypes");
         }
         // GET: api/<UserTypesController>
         [HttpGet]
         public IEnumerable<UserTypes> Get()
         {
-            return _userTypesCollection.Find(_ => true).ToList();
+            return _shiftCollection.Find(_ => true).ToList();
         }
 
-        
+        // GET api/<UserTypesController>/5
+        [HttpGet("{id}")]
+        public string Get(int id)
+        {
+            return "value";
+        }
 
         // POST api/<UserTypesController>
         [HttpPost]
-        public async void Post([FromBody] UserTypes types)
+        public void Post([FromBody] string value)
         {
-            await _userTypesCollection.InsertOneAsync(types);
         }
 
         // PUT api/<UserTypesController>/5
@@ -46,23 +49,8 @@ namespace App.Controllers
 
         // DELETE api/<UserTypesController>/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
+        public void Delete(int id)
         {
-            var deleted = await _userTypesCollection.DeleteOneAsync(s => s.Id == id);
-            if (deleted.IsAcknowledged && deleted.DeletedCount > 0)
-            {
-                return Ok("Deleted");
-            }
-            else
-            {
-                return NotFound();
-            }
-        }
-
-
-        public void Add([FromForm] string value)
-        {
-            //var newType = _userTypesCollection.InsertOne(new UserTypes { Types = value});
         }
     }
 }

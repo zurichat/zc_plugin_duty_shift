@@ -14,63 +14,44 @@ namespace App.Controllers
     [ApiController]
     public class ShiftScheduleController : ControllerBase
     {
-        private static IMongoCollection<ShiftSchedule> _shiftScheduleCollection;
+        private static IMongoCollection<ShiftSchedule> _shiftCollection;
 
         public ShiftScheduleController(IMongoClient client)
         {
             var database = client.GetDatabase("zuri_tracker");
-            //database.DropCollection("ShiftSchedule");
-            _shiftScheduleCollection = database.GetCollection<ShiftSchedule>("ShiftSchedule");
+            _shiftCollection = database.GetCollection<ShiftSchedule>("ShiftSchedule");
         }
 
         // GET: api/<ShiftScheduleController>
         [HttpGet]
         public IEnumerable<ShiftSchedule> Get()
         {
-            return _shiftScheduleCollection.Find(_ => true).ToList();
+            return _shiftCollection.Find(_ => true).ToList();
         }
 
-        
+        // GET api/<ShiftScheduleController>/5
+        [HttpGet("{id}")]
+        public string Get(int id)
+        {
+            return "value";
+        }
 
         // POST api/<ShiftScheduleController>
         [HttpPost]
-        public async void Post([FromBody] ShiftSchedule schedule)
+        public void Post([FromBody] string value)
         {
-            await _shiftScheduleCollection.InsertOneAsync(schedule);
         }
 
-        
-        // PUT api/<ShiftScheduleController>
+        // PUT api/<ShiftScheduleController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateSchedule(string id, [FromBody] ShiftSchedule schedule)
+        public void Put(int id, [FromBody] string value)
         {
-            schedule.Id = id; //  set the id field of the obtained object
-            var updated = await _shiftScheduleCollection.ReplaceOneAsync(s => s.Id == id, schedule);
-            if (updated.IsAcknowledged && updated.ModifiedCount > 0)
-            {
-                return Ok( "Updated" );
-            }
-            else
-            {
-                return NotFound();
-            }
-            //var update = Builders<ShiftSchedule>.Update.Set("AcknowledgedByUser", true);
-            
         }
 
         // DELETE api/<ShiftScheduleController>/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
+        public void Delete(int id)
         {
-            var deleted = await _shiftScheduleCollection.DeleteOneAsync(s => s.Id == id);
-            if (deleted.IsAcknowledged && deleted.DeletedCount > 0)
-            {
-                return Ok("Deleted");
-            }
-            else
-            {
-                return NotFound();
-            }
         }
     }
 }

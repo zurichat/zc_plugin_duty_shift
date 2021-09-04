@@ -32,31 +32,14 @@ namespace App.Controllers
             return _shiftCollection.Find(_=>true).ToList();
         }
 
-        // GET: ShiftController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: ShiftController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        
 
         // POST: ShiftController/Create
         [HttpPost]
-        public async void Create([FromForm]Shift shift)
+        public async void Create([FromBody]Shift shift)
         {
             await _shiftCollection.InsertOneAsync(shift);
         }
-
-        // GET: ShiftController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
 
 
         // GET: ShiftController/Delete/5

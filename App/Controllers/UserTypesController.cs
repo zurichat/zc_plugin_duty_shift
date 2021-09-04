@@ -29,16 +29,11 @@ namespace App.Controllers
             return _userTypesCollection.Find(_ => true).ToList();
         }
 
-        // GET api/<UserTypesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        
 
         // POST api/<UserTypesController>
         [HttpPost]
-        public async void Post([FromForm] UserTypes types)
+        public async void Post([FromBody] UserTypes types)
         {
             await _userTypesCollection.InsertOneAsync(types);
         }

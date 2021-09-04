@@ -34,7 +34,7 @@ namespace App.Controllers
 
         // POST api/<ShiftScheduleController>
         [HttpPost]
-        public async void Post([FromForm] ShiftSchedule schedule)
+        public async void Post([FromBody] ShiftSchedule schedule)
         {
             await _shiftScheduleCollection.InsertOneAsync(schedule);
         }
@@ -42,7 +42,7 @@ namespace App.Controllers
         
         // PUT api/<ShiftScheduleController>
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateSchedule(string id, [FromForm] ShiftSchedule schedule)
+        public async Task<IActionResult> UpdateSchedule(string id, [FromBody] ShiftSchedule schedule)
         {
             schedule.Id = id; //  set the id field of the obtained object
             var updated = await _shiftScheduleCollection.ReplaceOneAsync(s => s.Id == id, schedule);

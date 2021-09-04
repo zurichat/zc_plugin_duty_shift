@@ -38,16 +38,11 @@ namespace App.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
-        public async void Post([FromForm] Users user)
+        public async void Post([FromBody] Users user)
         {
             await _usersCollection.InsertOneAsync(user);
         }
 
-        // PUT api/<UsersController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]

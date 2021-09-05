@@ -1,5 +1,6 @@
 ﻿using App.Models;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -14,43 +15,79 @@ namespace App.Controllers
     [ApiController]
     public class UserTypesController : ControllerBase
     {
-        private static IMongoCollection<UserTypes> _shiftCollection;
+        private static IMongoCollection<UserTypes> _userTypesCollection;
 
         public UserTypesController(IMongoClient client)
         {
             var database = client.GetDatabase("zuri_tracker");
-            _shiftCollection = database.GetCollection<UserTypes>("userstypes");
+            //database.DropCollection("userstypes");
+            _userTypesCollection = database.GetCollection<UserTypes>("userstypes");
         }
         // GET: api/<UserTypesController>
         [HttpGet]
         public IEnumerable<UserTypes> Get()
         {
-            return _shiftCollection.Find(_ => true).ToList();
+            return _userTypesCollection.Find(_ => true).ToList();
         }
 
         // GET api/<UserTypesController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+        public async Task<IActionResult> Get(string id)
+        {            
+            var userType = await _userTypesCollection.Find<UserTypes>(u=>u.Id==id).FirstOrDefaultAsync();
+            return Ok(userType);
         }
 
         // POST api/<UserTypesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] UsertypeDto userType)
         {
+            var type = userType.Type.Trim();
+            if (string.IsNullOrEmpty(type))
+            {
+                return BadRequest();
+            }
+                
+            await _userTypesCollection.InsertOneAsync(new UserTypes{Types=type});
+            return Ok("Added new UserType Successfully");
+            
         }
 
-        // PUT api/<UserTypesController>/5
+        // PATCH api/<UserTypesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> UpdateUserType([FromBody] UserTypes userType, string id)
         {
+            userType.Id = id; //  set the id field of the obtained object
+            var updated = await _userTypesCollection.ReplaceOneAsync(s => s.Id == id, userType);
+            if (updated.IsAcknowledged && updated.ModifiedCount > 0)
+            {
+                return Ok("Updated");
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         // DELETE api/<UserTypesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
+            var deleted = await _userTypesCollection.DeleteOneAsync(s => s.Id == id);
+            if (deleted.IsAcknowledged && deleted.DeletedCount > 0)
+            {
+                return Ok("Deleted");
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+
+        public void Add([FromForm] string value)
+        {
+            //var newType = _userTypesCollection.InsertOne(new UserTypes { Types = value});
         }
     }
 }

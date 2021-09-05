@@ -11,5 +11,6 @@ Company Duty Shift plugin for zuri Chat
 
 
  New Branch - > Development - > Master (Final approval)
+ 
 
 In order to contribute please follow this guide [Contribution Guide](https://github.com/zurichat/zc_plugin_duty_shift_dotnet/wiki/Contribution-Guide)

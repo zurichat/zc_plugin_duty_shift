@@ -25,13 +25,13 @@
     "autoprefixer": "^9",
     "cross-env": "^5.2.0",
     "eslint-config-react-app": "^5.2.0",
-    "eslint-plugin-flowtype": "^3.13.0",    
+    "eslint-plugin-flowtype": "^3.13.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.18.3",
     "nan": "^2.14.1",
     "postcss": "^7",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.9",
     "typescript": "^3.7.5"
   },
   "eslintConfig": {

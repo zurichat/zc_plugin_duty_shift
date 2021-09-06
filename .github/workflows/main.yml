@@ -18,4 +18,5 @@ jobs:
             cd /var/www/zc_plugin_duty_shift_dotnet/App
             git pull
             dotnet build
+            dotnet publish
             sudo systemctl restart dotnet

@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import ShiftCard from "../ShiftCard";
-import PopupModal from "../PopupModal";
 
 function Schedule() {
-  const [modalStatus, setModalStatus] = useState(null);
-
   return (
     <main className="p-3 space-y-6 text-xs bg-gray-100 App lg:p-10 xl:p-12 md:text-sm lg:text-base xl:text-lg">
       <header className="flex justify-between">
@@ -13,10 +10,7 @@ function Schedule() {
           <p className="font-medium">Tomorrow</p>
           <ChevronDownIcon className="w-6 h-6" />
         </button>
-        <button
-          onClick={() => setModalStatus("new")}
-          className="px-2 py-1 font-medium text-white bg-green-500 rounded-sm lg:rounded-md w-28 lg:w-40 xl:w-48 xl:h-16"
-        >
+        <button className="px-2 py-1 font-medium text-white bg-green-500 rounded-sm lg:rounded-md w-28 lg:w-40 xl:w-48 xl:h-16">
           Add new shift
         </button>
       </header>
@@ -31,11 +25,11 @@ function Schedule() {
         </header>
 
         <div className="space-y-6">
-          <ShiftCard setModalStatus={setModalStatus} />
-          <ShiftCard setModalStatus={setModalStatus} />
-          <ShiftCard setModalStatus={setModalStatus} />
-          <ShiftCard setModalStatus={setModalStatus} />
-          <ShiftCard setModalStatus={setModalStatus} />
+          <ShiftCard />
+          <ShiftCard />
+          <ShiftCard />
+          <ShiftCard />
+          <ShiftCard />
         </div>
 
         <div className="flex xl:hidden">
@@ -44,10 +38,6 @@ function Schedule() {
           </button>
         </div>
       </section>
-
-      {modalStatus && (
-        <PopupModal mode={modalStatus} setModalStatus={setModalStatus} />
-      )}
     </main>
   );
 }

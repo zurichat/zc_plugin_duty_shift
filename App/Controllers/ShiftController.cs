@@ -1,4 +1,5 @@
-﻿using App.Models;
+﻿using System.Xml.Schema;
+using App.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
@@ -42,6 +43,7 @@ namespace App.Controllers
         }
 
 
+
         // GET: ShiftController/Delete/5
 
         [HttpDelete("{id}")]
@@ -58,6 +60,29 @@ namespace App.Controllers
             }
         }
 
+                //To check this Update One action use /api/Shift/Put/id,Form Records        
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(string id, [FromBody]Shift shift)
+        {
+            var shiftRecord =  _shiftCollection.Find(s=>s.Id==id).FirstOrDefault();
+            if(shiftRecord != null){
+                shiftRecord.ShiftTitle = shift.ShiftTitle;
+                shiftRecord.TimeStart =shift.TimeStart;
+                shiftRecord.TimeEnd = shift.TimeEnd;
+                shiftRecord.LeadById = shift.LeadById;
+
+                FilterDefinition<Shift> s = new ExpressionFilterDefinition<Shift>(s => s.Id == id);
+
+                await _shiftCollection.UpdateOneAsync(s, new ObjectUpdateDefinition<Shift>(shiftRecord));
+                return Ok("Record updated Successfully");
+
+            }else{
+                return NotFound("No such record exists");
+            }
+
         
-    }
+        }
+            
+
+        }
 }

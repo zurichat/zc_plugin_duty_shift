@@ -1,4 +1,4 @@
-using App.Models;
+﻿using App.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
@@ -18,7 +18,9 @@ namespace App.Controllers
         public ShiftController(IMongoClient client)
         {
             var database = client.GetDatabase("zuri_tracker");
+            //database.DropCollection("shift");
             _shiftCollection = database.GetCollection<Shift>("shift");
+            
         }
 
 
@@ -30,73 +32,32 @@ namespace App.Controllers
             return _shiftCollection.Find(_=>true).ToList();
         }
 
-        // GET: ShiftController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: ShiftController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        
 
         // POST: ShiftController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async void Create([FromBody]Shift shift)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await _shiftCollection.InsertOneAsync(shift);
         }
 
-        // GET: ShiftController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: ShiftController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: ShiftController/Delete/5
-        public ActionResult Delete(int id)
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
         {
-            return View();
+            var deleted = await _shiftCollection.DeleteOneAsync(s => s.Id == id);
+            if (deleted.IsAcknowledged && deleted.DeletedCount > 0)
+            {
+                return Ok("Deleted");
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
-        // POST: ShiftController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }

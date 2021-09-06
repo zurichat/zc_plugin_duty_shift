@@ -1,6 +1,6 @@
 import React from "react";
 
-function ShiftCard() {
+function ShiftCard({ setModalStatus }) {
   return (
     <div className="p-3 py-4 space-y-6 bg-white xl:py-3 xl:flex xl:justify-between xl:text-xl rounded-xl">
       <div className="flex justify-between xl:space-x-28 xl:ml-4">
@@ -26,7 +26,10 @@ function ShiftCard() {
 
       <div className="flex items-center content-center justify-between text-center xl:my-auto xl:space-x-12 xl:mr-10">
         <div className="items-center content-center my-auto align-middle">
-          <button className="flex justify-between py-2 my-auto text-center bg-white border-2 border-green-400 rounded-sm lg:rounded-md xl:text-base w-28 xl:w-36">
+          <button
+            onClick={() => setModalStatus("edit")}
+            className="flex justify-between py-2 my-auto text-center bg-white border-2 border-green-400 rounded-sm lg:rounded-md xl:text-base w-28 xl:w-36"
+          >
             <p className="mx-auto font-medium text-green-500">Edit Shift</p>
           </button>
         </div>

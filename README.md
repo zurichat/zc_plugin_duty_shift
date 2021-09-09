@@ -17,4 +17,7 @@ In order to contribute please follow this guide [Contribution Guide](https://git
 2. cd App/ClientApp
 3.npm install
 4. npm start
+5. if after <code>npm install </code> it doesn't run
+6. npm install rimraf
+7. npm install craco
  

@@ -23,11 +23,22 @@ namespace App.Controllers
 
         // POST: RoomController/Create
         [HttpPost]
-        
+
         public async Task<IActionResult> Create([FromBody] Room room)
         {
             await _roomCollection.InsertOneAsync(room);
             return Ok("Room created successfully");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Remove(string id)
+        {
+            var result = await _roomCollection.DeleteOneAsync(x => x.Id == id);
+            if (!result.IsAcknowledged && result.DeletedCount <= 0)
+            {
+                return NotFound("Room not found");
+            }
+            return Ok("Room Successfully Deleted");
         }
     }
 }

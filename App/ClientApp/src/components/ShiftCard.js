@@ -2,40 +2,43 @@ import React from "react";
 
 function ShiftCard({ setModalStatus }) {
   return (
-    <div className="p-3 py-4 space-y-6 bg-white xl:py-3 xl:flex xl:justify-between xl:text-xl rounded-xl">
-      <div className="flex justify-between xl:space-x-28 xl:ml-4">
+    <div className="items-center p-4 space-y-6 bg-white lg:space-y-0 lg:p-6 lg:flex lg:justify-between lg:text-lg rounded-xl">
+      <div className="flex justify-between w-full lg:w-9/12">
         <div className="flex items-center space-x-2 text-center xl:space-x-6">
           <img
             src="https://res.cloudinary.com/moh-x/image/upload/v1618542907/fcc/portfolio/AvatarMaker_ipxz90.svg"
             alt="user's avatar"
-            className="border border-green-500 rounded-full xl:border-4 w-7 h-7 xl:w-14 xl:h-14"
+            className="border border-green-500 rounded-full w-7 h-7 lg:w-11 lg:h-11"
           />
-          <span className="xl:font-medium">Babatunde Adenowo</span>
+          <span className="lg:font-medium">Babatunde Adenowo</span>
         </div>
 
-        <p className="items-center hidden my-auto text-left text-gray-500 lg:block">
-          Developer
-        </p>
+        <div className="hidden my-auto text-left text-gray-500 lg:block">
+          <p>Developer</p>
+        </div>
 
-        <p className="items-center hidden my-auto text-left text-gray-500 lg:block">
-          Eyimofe Omotayo
-        </p>
+        <div className="hidden my-auto text-left text-gray-500 lg:block">
+          <p>Eyimofe Omotayo</p>
+        </div>
 
         <div className="my-auto">09:00am - 12:00pm</div>
       </div>
 
-      <div className="flex items-center content-center justify-between text-center xl:my-auto xl:space-x-12 xl:mr-10">
-        <div className="items-center content-center my-auto align-middle">
+      <div className="flex items-center justify-between text-center lg:my-auto lg:space-x-8 lg:mr-6">
+        <div className="items-center content-center my-auto border lg:text-xs">
           <button
             onClick={() => setModalStatus("edit")}
-            className="flex justify-between py-2 my-auto text-center bg-white border-2 border-green-400 rounded-sm lg:rounded-md xl:text-base w-28 xl:w-36"
+            className="py-2 my-auto font-medium text-center text-green-500 bg-white border-2 border-green-400 rounded-sm lg:rounded-md w-28"
           >
-            <p className="mx-auto font-medium text-green-500">Edit Shift</p>
+            Edit Shift
           </button>
         </div>
-        <p className="items-center text-center text-red-500 xl:my-auto xl:text-base">
+        <button
+          onClick={() => setModalStatus("delete")}
+          className="py-2 my-auto text-center text-red-500 cursor-pointer lg:text-xs"
+        >
           Delete Shift
-        </p>
+        </button>
       </div>
     </div>
   );

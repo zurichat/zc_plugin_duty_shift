@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace App
 {
 
-    public class JsonResponse<TOutputModel>
+    public class ReadResponseModel<TOutputModel>
     {
         [JsonProperty("status")]
         public int Status { get; set; }

@@ -38,7 +38,7 @@ namespace App
             });
 
             //HttpClient for ZcCoreDataService
-            services.AddHttpClient<ZcCoreDataService>();
+            services.AddHttpClient<DataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

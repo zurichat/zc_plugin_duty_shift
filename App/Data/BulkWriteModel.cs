@@ -19,5 +19,7 @@ namespace App
 
         [Required]
         public IEnumerable<TPayload> payload { get; set; }
+
+        public Filter filter { get; set; }
     }
 }

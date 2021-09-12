@@ -19,5 +19,7 @@ namespace App
 
         [Required]
         public TPayload payload { get; set; }
+
+        public string object_id { get; set; }
     }
 }

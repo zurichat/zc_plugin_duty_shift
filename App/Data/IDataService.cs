@@ -16,5 +16,9 @@ namespace App
 
         Task<ReadResponseModel<TOutputModel>> ReadRecord<TOutputModel>(string collectionName, string organizationId, string queryKey, string queryValue);
 
+        Task<ResponseModel> UpdateRecord<TDataModel>(string collectionName, string organizationId, TDataModel data, string objectId);
+
+        Task<ResponseModel> UpdateRecord<TDataModel>(string collectionName, string organizationId, IEnumerable<TDataModel> data, Filter filterQuery);
+
     }
 }

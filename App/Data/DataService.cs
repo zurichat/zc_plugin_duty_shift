@@ -1,6 +1,4 @@
-using System.Net;
 using System.Text;
-using System.Collections;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -141,6 +139,132 @@ namespace App
             catch (HttpRequestException)
             {
                return new ReadResponseModel<TOutputModel> { Status = (int)response.StatusCode, Message = response.ReasonPhrase};
+            }
+        }
+
+
+        //Single record update
+        public async Task<ResponseModel> UpdateRecord<TDataModel>(string collectionName, string organizationId, TDataModel data, string objectId)
+        {
+            var body = new WriteModel<TDataModel>
+            {
+                plugin_id = pluginId,
+                organization_id = organizationId,
+                collection_name = collectionName,
+                bulk_write = false,
+                object_id = objectId,
+                payload = data
+            };
+
+            var jsonObj = JsonConvert.SerializeObject(body);
+            var payloadData = new StringContent(jsonObj, Encoding.UTF8, "application/json");
+
+            using var response = await Client.PostAsync("write", payloadData);
+
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                var responseStream = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<ResponseModel>(responseStream);
+            }
+            catch (HttpRequestException)
+            {
+                return  new ResponseModel { Status = (int)response.StatusCode, Message = response.ReasonPhrase};
+            }
+            
+        }
+
+
+        //Bulk record update
+        public async Task<ResponseModel> UpdateRecord<TDataModel>(string collectionName, string organizationId, IEnumerable<TDataModel> data, Filter filterQuery)
+        {
+            var body = new BulkWriteModel<TDataModel>
+            {
+                plugin_id = pluginId,
+                organization_id = organizationId,
+                collection_name = collectionName,
+                bulk_write = true,
+                filter = filterQuery,
+                payload = data
+            };
+
+            var jsonObj = JsonConvert.SerializeObject(body);
+            var payloadData = new StringContent(jsonObj, Encoding.UTF8, "application/json");
+
+            using var response = await Client.PostAsync("write", payloadData);
+
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                var responseStream = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<ResponseModel>(responseStream);
+            }
+            catch (HttpRequestException)
+            {
+                return  new ResponseModel { Status = (int)response.StatusCode, Message = response.ReasonPhrase};
+            }
+        }
+
+
+        //Single record delete
+        public async Task<ResponseModel> DeleteRecord<TDataModel>(string collectionName, string organizationId, TDataModel data, string objectId)
+        {
+            var body = new WriteModel<TDataModel>
+            {
+                plugin_id = pluginId,
+                organization_id = organizationId,
+                collection_name = collectionName,
+                bulk_write = false,
+                object_id = objectId,
+                payload = data
+            };
+
+            var jsonObj = JsonConvert.SerializeObject(body);
+            var payloadData = new StringContent(jsonObj, Encoding.UTF8, "application/json");
+
+            using var response = await Client.PostAsync("delete", payloadData);
+
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                var responseStream = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<ResponseModel>(responseStream);
+            }
+            catch (HttpRequestException)
+            {
+                return  new ResponseModel { Status = (int)response.StatusCode, Message = response.ReasonPhrase};
+            }
+            
+        }
+
+
+        //Bulk record delete
+        public async Task<ResponseModel> DeleteRecord<TDataModel>(string collectionName, string organizationId, IEnumerable<TDataModel> data, Filter filterQuery)
+        {
+            var body = new BulkWriteModel<TDataModel>
+            {
+                plugin_id = pluginId,
+                organization_id = organizationId,
+                collection_name = collectionName,
+                bulk_write = true,
+                filter = filterQuery,
+                payload = data
+            };
+
+            var jsonObj = JsonConvert.SerializeObject(body);
+            var payloadData = new StringContent(jsonObj, Encoding.UTF8, "application/json");
+
+            using var response = await Client.PostAsync("delete", payloadData);
+
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                var responseStream = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<ResponseModel>(responseStream);
+            }
+            catch (HttpRequestException)
+            {
+                return  new ResponseModel { Status = (int)response.StatusCode, Message = response.ReasonPhrase};
             }
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace App
 {
-    public class BulkWriteModel<TPayload>
+    public class DeleteModel
     {
         [Required]
         public string plugin_id { get; set; }
@@ -15,9 +15,10 @@ namespace App
         public string collection_name { get; set; }
 
         [Required]
-        public bool bulk_write { get; set; }
+        public bool bulk_delete { get; set; }
 
-        [Required]
-        public IEnumerable<TPayload> payload { get; set; }
+        public string object_id { get; set; }
+
+        public Dictionary<string, string> filter { get; set; } = new Dictionary<string, string>();
     }
 }

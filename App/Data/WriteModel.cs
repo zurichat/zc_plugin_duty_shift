@@ -21,5 +21,7 @@ namespace App
         public TPayload payload { get; set; }
 
         public string object_id { get; set; }
+
+        public Dictionary<string, string> filter { get; set; } = new Dictionary<string, string>();
     }
 }

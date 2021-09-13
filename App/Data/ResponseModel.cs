@@ -11,7 +11,17 @@ namespace App
 
         [JsonProperty("message")]
         public string Message { get; set; }
+
+        [JsonProperty("data")]
+        public DataCount Data { get; set; }
     }
 
+    public class DataCount
+    {
+        [JsonProperty("matched_documents")]
+        public int MatchedDocument { get; set; }
 
+        [JsonProperty("modified_documents")]
+        public int ModifiedDocument { get; set; }
+    }
 }

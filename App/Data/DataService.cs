@@ -10,13 +10,11 @@ namespace App
     public class DataService : IDataService
     {
         public HttpClient Client { get; }
-        //private const string pluginId = "6131f73d569dbbb7ce5b4fc5"; //This is only for the test server. Plugin ID will be different after registration on prod. server
-        private const string pluginId = "613e2e3de4010959c8dc0cbc"; //from api.zuri.chat
+        private const string pluginId = "613e2e3de4010959c8dc0cbc"; //Value will change overtime. Should be an environment variable
 
         public DataService(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://api.zuri.chat/data/"); //Prod
-            //client.BaseAddress = new Uri("https://zccore.herokuapp.com/data/"); //Test
+            client.BaseAddress = new Uri("https://api.zuri.chat/data/");
 
             Client = client;
         }
@@ -200,7 +198,7 @@ namespace App
                 plugin_id = pluginId,
                 organization_id = organizationId,
                 collection_name = collectionName,
-                bulk_delete = false, //bulk_delete
+                bulk_delete = false,
                 object_id = objectId
             };
 
@@ -234,7 +232,7 @@ namespace App
                 plugin_id = pluginId,
                 organization_id = organizationId,
                 collection_name = collectionName,
-                bulk_delete = true, //bulk_delete
+                bulk_delete = true,
                 filter = filterQuery
             };
 

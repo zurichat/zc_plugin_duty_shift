@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace App
 {
-    public class DataWriteModel<TPayload>
+    public class DeleteModel
     {
         [Required]
         public string plugin_id { get; set; }
@@ -15,13 +15,10 @@ namespace App
         public string collection_name { get; set; }
 
         [Required]
-        public bool bulk_write { get; set; }
+        public bool bulk_delete { get; set; }
 
         public string object_id { get; set; }
 
-        public string filter { get; set; } //Data type for filter is yet to be determined. Ask Zc_Core team
-
-        [Required]
-        public TPayload payload { get; set; }
+        public Dictionary<string, string> filter { get; set; } = new Dictionary<string, string>();
     }
 }

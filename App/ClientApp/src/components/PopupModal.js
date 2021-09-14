@@ -9,21 +9,23 @@ import {
 
 function PopupModal({ mode, setModalStatus }) {
   return (
-    <div className="fixed inset-0 z-50 flex w-full h-full overflow-auto bg-gray-900 bg-opacity-50 pin bg-blend-darken">
+    <div className="fixed inset-0 z-50 flex w-full h-full overflow-auto bg-gray-900 bg-opacity-50 pin bg-blend-darken lg:p-28">
+      
       <section className="relative flex flex-col m-auto overscroll-contain">
+
         <header className="flex justify-between p-4 mx-2 text-center text-white bg-green-500 rounded-t-xl lg:rounded-t-2xl">
-          <h2 className="my-auto text-lg font-medium lg:text-xl lg:mr-60 lg:ml-3">
+          <h2 className="my-auto text-base lg:mr-10 lg:ml-3">
             {mode === "new" ? "Add new shift" : "Edit shift"}
           </h2>
           <XCircleIcon
             onClick={() => setModalStatus(null)}
-            className="stroke-current stroke-1 w-7 h-7 lg:mr-3 lg:w-10 lg:h-10 lg:ml-60"
+            className="stroke-current stroke-1 w-6 h-6 lg:mr-3 lg:w-9 lg:h-9 lg:ml-60"
           />
         </header>
 
         <form
           action=""
-          className="grid grid-cols-2 gap-6 p-4 mx-2 mb-20 overflow-hidden bg-white rounded-b-xl lg:rounded-b-2xl"
+          className="grid grid-cols-2 gap-6 p-5 mx-2 mb-15 overflow-hidden bg-white rounded-b-xl lg:rounded-b-2xl"
         >
           <div className="lg:relative lg:mt-4">
             <label
@@ -31,15 +33,15 @@ function PopupModal({ mode, setModalStatus }) {
               className="flex items-center mb-3 text-gray-400"
             >
               <CalendarIcon className="w-6 h-6 lg:hidden" />
-              <span className="ml-2 text-lg lg:text-xl">Date</span>
+              <span className="ml-2 text-xs lg:text-base">Date</span>
             </label>
             <input
               type="text"
               id="date"
-              className="p-3 font-sans text-sm bg-gray-100 rounded-md outline-none lg:text-lg w-44 lg:w-72 lg:ml-2"
+              className="p-3 font-sans text-base bg-gray-100 rounded-md outline-none lg:text-base w-100 lg:w-72 lg:ml-2"
               value="Mon, August 28, 2021"
             />
-            <CalendarIcon className="hidden text-gray-400 lg:w-8 lg:h-8 lg:absolute lg:inline lg:bottom-4 lg:right-8" />
+            <CalendarIcon className="hidden text-gray-400 w-6 h-6  lg:absolute lg:inline lg:bottom-4 lg:right-8" />
           </div>
 
           <div className="relative lg:mt-4">
@@ -47,15 +49,15 @@ function PopupModal({ mode, setModalStatus }) {
               htmlFor="date"
               className="flex items-center mb-3 text-gray-400 lg:text-xl"
             >
-              <span className="text-lg lg:ml-2 lg:text-xl">Shift</span>
+              <span className="text-base lg:ml-2 lg:text-base">Shift</span>
             </label>
             <input
               type="text"
               id="date"
-              className="p-3 font-sans text-sm bg-gray-100 border rounded-md outline-none lg:text-lg w-44 lg:w-72 lg:ml-2"
+              className="p-3 font-sans text-sm bg-gray-100 border rounded-md outline-none lg:text-base w-44 lg:w-72 lg:ml-2"
               value="Morning Shift"
             />
-            <ChevronDownIcon className="absolute w-6 h-6 text-gray-400 lg:w-8 lg:h-8 bottom-4 right-6 lg:bottom-4 lg:right-8" />
+            <ChevronDownIcon className="absolute w-6 h-6 text-gray-400   bottom-4 right-6 lg:bottom-4 lg:right-8" />
           </div>
 
           <div className="relative lg:mt-4">
@@ -64,31 +66,31 @@ function PopupModal({ mode, setModalStatus }) {
               className="flex items-center mb-3 text-gray-400 lg:text-xl"
             >
               <ClockIcon className="w-6 h-6 lg:hidden" />
-              <span className="ml-2 text-lg lg:text-xl">Time</span>
+              <span className="ml-2 text-base lg:text-base">Time</span>
             </label>
             <input
               type="text"
               id="date"
-              className="p-3 font-sans text-sm bg-gray-100 rounded-md outline-none lg:text-lg w-44 lg:w-72 lg:ml-2"
+              className="p-3 font-sans text-sm bg-gray-100 rounded-md outline-none lg:text-base w-44 lg:w-72 lg:ml-2"
               value="09:00am"
             />
-            <ClockIcon className="hidden text-gray-400 lg:w-8 lg:h-8 lg:absolute lg:inline lg:bottom-4 lg:right-8" />
+            <ClockIcon className="hidden text-gray-400 w-6 h-6 lg:absolute lg:inline lg:bottom-6 lg:right-8" />
           </div>
 
           <div className="relative lg:mt-4">
             <label
               htmlFor="date"
-              className="flex items-center mb-3 text-gray-400 lg:text-xl"
+              className="flex items-center mb-3 text-gray-400 lg:text-base"
             >
-              <span className="text-lg lg:ml-2 lg:text-xl">End</span>
+              <span className="text-base lg:ml-2 lg:text-base">End</span>
             </label>
             <input
               type="text"
               id="date"
-              className="p-3 font-sans text-sm bg-gray-100 rounded-md outline-none lg:text-lg w-44 lg:w-72 lg:ml-2"
+              className="p-3 font-sans text-base bg-gray-100 rounded-md outline-none lg:text-base w-44 lg:w-72 lg:ml-2"
               value="12:00am"
             />
-            <ClockIcon className="hidden text-gray-400 lg:w-8 lg:h-8 lg:absolute lg:inline lg:bottom-4 lg:right-8" />
+            <ClockIcon className="hidden text-gray-400 w-6 h-6 lg:absolute lg:inline lg:bottom-4 lg:right-8" />
           </div>
 
           <div className="relative lg:mt-4">
@@ -96,12 +98,12 @@ function PopupModal({ mode, setModalStatus }) {
               htmlFor="date"
               className="flex items-center mb-3 text-gray-400 lg:text-xl"
             >
-              <span className="text-lg lg:ml-2 lg:text-xl">Title</span>
+              <span className="text-base lg:ml-2 lg:text-base">Title</span>
             </label>
             <input
               type="text"
               id="date"
-              className="p-3 font-sans text-sm bg-gray-100 border rounded-md outline-none lg:text-lg w-44 lg:w-72 lg:ml-2"
+              className="p-3 font-sans text-sm bg-gray-100 border rounded-md outline-none lg:text-base w-44 lg:w-72 lg:ml-2"
               value="Morning Shift"
             />
             <ChevronDownIcon className="absolute w-6 h-6 text-gray-400 bottom-4 right-6" />
@@ -113,7 +115,7 @@ function PopupModal({ mode, setModalStatus }) {
               alt="user's avatar"
               className="w-8 h-8 border border-green-500 rounded-full xl:border-4"
             />
-            <p className="font-extralight">Babatunde Xodeeq</p>
+            <p className="font-extralight text-base">Babatunde Xodeeq</p>
             <XIcon className="w-3 h-3" />
           </div>
 
@@ -131,7 +133,7 @@ function PopupModal({ mode, setModalStatus }) {
             <input
               type="text"
               id="date"
-              className="p-3 font-sans text-sm bg-gray-100 rounded-md outline-none lg:text-xl w-44 lg:w-72 lg:ml-2 lg:bg-transparent lg:text-center lg:font-medium lg:placeholder-gray-400"
+              className="p-3 font-sans text-base bg-gray-100 rounded-md outline-none lg:text-xl w-44 lg:w-64 lg:ml-2 lg:bg-transparent lg:text-center lg:font-medium lg:placeholder-gray-400"
               placeholder="Add Users"
               readOnly
             />
@@ -141,7 +143,7 @@ function PopupModal({ mode, setModalStatus }) {
           <input
             type="submit"
             value="Publish"
-            className="col-span-2 p-2 mt-8 mb-6 text-lg font-medium text-white bg-green-500 rounded-lg lg:text-2xl w-80 lg:w-96 lg:h-16 place-self-center"
+            className="col-span-2 p-2 mt-8 mb-6 text-md font-medium text-white bg-green-500 rounded-lg lg:text-lg w-72 lg:w-80 lg:h-16 place-self-center"
           />
         </form>
       </section>

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace App
 {
 
-    public class JsonResponse<TOutputModel>
+    public class DeleteResponseModel
     {
         [JsonProperty("status")]
         public int Status { get; set; }
@@ -13,8 +13,12 @@ namespace App
         public string Message { get; set; }
 
         [JsonProperty("data")]
-        public List<TOutputModel> Data { get; set; }
+        public DeletedDataCount Data { get; set; }
     }
 
-
+    public class DeletedDataCount
+    {
+        [JsonProperty("deleted_count")]
+        public int DeletedCount { get; set; }
+    }
 }

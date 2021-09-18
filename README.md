@@ -14,3 +14,12 @@ Company Duty Shift plugin for zuri Chat
  
 
 In order to contribute please follow this guide [Contribution Guide](https://github.com/zurichat/zc_plugin_duty_shift_dotnet/wiki/Contribution-Guide)
+# zc_plugin_duty_shift_dotnet Frontend
+1. Clone the repository from develop branch
+2. cd App/ClientApp
+3.npm install
+4. npm start
+5. if after <code>npm install </code> it doesn't run
+6. npm install rimraf
+7. npm install craco
+ 

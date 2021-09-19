@@ -50,6 +50,14 @@ export class NavMenu extends Component {
                   Schedule
                 </NavLink>
               </NavItem>
+
+              <NavItem>
+                <NavLink tag={Link} className="text-light" to="/filter">
+                  {" "}
+                  Filter
+                </NavLink>
+              </NavItem>
+
               <NavItem>
                 <NavLink tag={Link} className="text-light" to="/">
                   {" "}

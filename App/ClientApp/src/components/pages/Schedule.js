@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import axios from "axios";
 import ShiftCard from "../ShiftCard";
 import Popup from "../Popup";
 import PopupModal from "../PopupModal";
@@ -10,12 +11,22 @@ const Modal = Popup(PopupModal);
 const GreenDialog = Popup(SuccessDialog);
 const RedDialog = Popup(DeleteDialog);
 
+// const shiftsUrl = process.env.SHIFTS_ENDPOINT;
+const shiftsUrl = "https://tracker.zuri.chat/api/shift";
+
 function Schedule() {
   const [modalStatus, setModalStatus] = useState(null);
+  const [shifts, setShifts] = useState(null);
+
+  React.useEffect(() => {
+    axios.get(shiftsUrl).then((response) => {
+      setShifts(response.data);
+    });
+  }, []);
 
   return (
     <main
-      className={`p-3 space-y-6 lg:space-y-10 text-xs bg-gray-100 App lg:p-6 xl:p-8 md:text-sm ${
+      className={`p-3 space-y-6 lg:space-y-10 text-xs bg-gray-100 App lg:p-6 xl:p-8 md:text-sm min-h-screen ${
         modalStatus && "overflow-hidden"
       }`}
     >
@@ -41,13 +52,25 @@ function Schedule() {
           <div className="hidden lg:ml-44 lg:inline-block"></div>
         </header>
 
-        <div className="space-y-6">
-          <ShiftCard setModalStatus={setModalStatus} />
-          <ShiftCard setModalStatus={setModalStatus} />
-          <ShiftCard setModalStatus={setModalStatus} />
-          <ShiftCard setModalStatus={setModalStatus} />
-          <ShiftCard setModalStatus={setModalStatus} />
-        </div>
+        {!shifts ? (
+          <h1 className="text-4xl text-center">No shifts to display yet!</h1>
+        ) : (
+          <div className="space-y-6">
+            {shifts.map(
+              ({ id, shiftTitle, leadById, timeStart, timeEnd, status }) =>
+                status && (
+                  <ShiftCard
+                    key={id}
+                    setModalStatus={setModalStatus}
+                    title={shiftTitle}
+                    lead={leadById}
+                    start={timeStart}
+                    end={timeEnd}
+                  />
+                )
+            )}
+          </div>
+        )}
 
         <div className="flex xl:hidden">
           <button className="h-10 mx-auto text-sm text-center text-white bg-green-500 rounded-sm w-60">

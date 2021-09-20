@@ -1,6 +1,7 @@
 import React from "react";
 
-function ShiftCard({ setModalStatus }) {
+function ShiftCard({ setModalStatus, title, lead, start, end }) {
+  console.log(title, lead, start, end);
   return (
     <div className="items-center p-4 space-y-6 bg-white lg:space-y-0 lg:p-6 lg:flex lg:justify-between lg:text-lg rounded-xl">
       <div className="flex justify-between w-full lg:w-9/12">
@@ -14,14 +15,16 @@ function ShiftCard({ setModalStatus }) {
         </div>
 
         <div className="hidden my-auto text-left text-gray-500 lg:block">
-          <p>Developer</p>
+          <p>{title}</p>
         </div>
 
         <div className="hidden my-auto text-left text-gray-500 lg:block">
-          <p>Eyimofe Omotayo</p>
+          <p>{lead}</p>
         </div>
 
-        <div className="my-auto">09:00am - 12:00pm</div>
+        <div className="my-auto">
+          {start} - {end}
+        </div>
       </div>
 
       <div className="flex items-center justify-between text-center lg:my-auto lg:space-x-8 lg:mr-6">

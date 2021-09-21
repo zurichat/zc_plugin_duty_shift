@@ -8,6 +8,7 @@ import Schedule from "./components/pages/Schedule";
 import Filter from "./components/pages/Filter";
 
 import "./custom.css";
+import EmployeeSchedule from "./components/pages/EmployeeSchedule";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -20,6 +21,7 @@ export default class App extends Component {
         <Route path="/fetch-data" component={FetchData} />
         <Route path="/schedule" component={Schedule} />
         <Route path="/filter" component={Filter} />
+        <Route path="/employee-schedule" component={EmployeeSchedule} />
       </Layout>
     );
   }

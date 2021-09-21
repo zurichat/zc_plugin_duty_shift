@@ -1,3 +1,4 @@
+
 # zc_plugin_duty_shift_dotnet
 Company Duty Shift plugin for zuri Chat
 ###### To run the project :
@@ -6,6 +7,7 @@ Company Duty Shift plugin for zuri Chat
 3. Run <code> npm install </code>
 4. Run <code>cd ..</code>twice to navigate back to the zc_plugin_duty_shift_dotnet directory
 5. Run  <code>dotnet run</code>
+
 
 
  New Branch - > Development - > Master (Final approval)

@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,300&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+main {
+  font-family: "Lato", sans-serif;
+
+  --plugin-bg-color: #f6f6f6;
+  --plugin-primary-color: #00b87c;
+  --plugin-main-padding: 1rem;
+  --plugin-font-size: 0.65rem;
+  --plugin-text-color: #1d1c1d;
+  --plugin-icon-color: #616061;
+  --plugin-icon-bg-color: #e7e7e7;
+  --plugin-shift-bg-color: #ededed;
+
+  /* Modal */
+  --modal-border-radius: 10px;
+  --plugin-page-overlay: rgba(64, 79, 74, 0.5); /* or #404F4A80*/
+
+  /* Buttons */
+  --plugin-button-width: auto;
+  --plugin-button-padding: 5px;
+  --button-text-size: 0.65rem;
+  --button-icon-size: 0.75rem;
+
+  /* Schedule */
+  --schedule-heading-text-size: 0.75rem;
+  --schedule-heading-font-weight: 500;
+  --schedule-heading-text-color: #3a3a3c;
+
+  /* Shifts */
+  --card-text-color: #242424;
+
+  /* Forms */
+  --shift-form-width: 18rem;
+  --shift-form-padding: 1rem;
+  --form-label-color: #999999;
+  --form-input-bg-color: #f4f4f48f;
+  --form-input-border: #9e9e9e78;
+
+  /* Success modal */
+  --success-text-color: #454545;
+  --success-message-color: #7d7d7d;
+}
+
+@media screen and (min-width: 1440px) {
+  main {
+    --plugin-font-size: 1rem;
+    --plugin-main-padding: 2.5rem 3.5rem;
+
+    /* Buttons */
+    --button-text-size: 1rem;
+    --plugin-button-padding: 0.75rem 1rem;
+    --button-icon-size: 1.65rem;
+
+    /* Schedule */
+    --schedule-heading-text-size: 1.1rem;
+    --schedule-heading-font-weight: 700;
+  }
+}

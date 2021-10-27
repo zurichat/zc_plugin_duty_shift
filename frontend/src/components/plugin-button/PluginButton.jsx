@@ -1,8 +1,16 @@
+import React from "react";
+
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 function PluginButton({ text, onClick }) {
   return <ButtonContainer onClick={onClick}>{text}</ButtonContainer>;
 }
+
+PluginButton.propTypes = {
+  text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+};
 
 export default PluginButton;
 

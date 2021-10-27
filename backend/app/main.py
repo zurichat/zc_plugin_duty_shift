@@ -10,7 +10,7 @@ app = FastAPI()
 @app.get("/")
 def read_root():
     """The root backend route"""
-    return {"msg": "Duty Shifts Backend!"}
+    return {"msg": "Duty Shifts Plugin Backend!"}
 
 
 @app.get("/items/{item_id}")

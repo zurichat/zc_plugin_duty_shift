@@ -1,3 +1,6 @@
+import React from "react";
+
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
@@ -10,6 +13,11 @@ function PluginSelect({ text, onClick }) {
     </SelectButton>
   );
 }
+
+PluginSelect.propTypes = {
+  text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+};
 
 export default PluginSelect;
 

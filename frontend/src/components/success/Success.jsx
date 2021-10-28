@@ -1,3 +1,5 @@
+import React from "react";
+
 import styled from "styled-components";
 import SvgIcon from "@mui/material/SvgIcon";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -13,7 +15,7 @@ function Success() {
 
       <p>Your new shift has been added successfully</p>
 
-      <button>Ok</button>
+      <button type="submit">Ok</button>
     </SuccessContainer>
   );
 }

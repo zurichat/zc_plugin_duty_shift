@@ -1,18 +1,20 @@
 {
   "name": "@zuri/duty-shift",
   "scripts": {
-    "start": "webpack serve",
-    "start:standalone": "webpack serve --env standalone",
-    "build": "concurrently yarn:build:*",
+    "start": "ESLINT_NO_DEV_ERRORS=true webpack serve",
+    "start:standalone": "DISABLE_ESLINT_PLUGIN=true webpack serve --env standalone",
+    "build": "DISABLE_ESLINT_PLUGIN=true concurrently yarn:build:*",
     "build:webpack": "webpack --mode=production",
     "analyze": "webpack --mode=production --env analyze",
-    "lint": "eslint src --ext js",
-    "format": "prettier --write .",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,scss,md,json}' --config ./.prettierrc",
     "check-format": "prettier --check .",
     "test": "cross-env BABEL_ENV=test jest",
     "watch-tests": "cross-env BABEL_ENV=test jest --watch",
-    "prepare": "husky install",
-    "coverage": "cross-env BABEL_ENV=test jest --coverage"
+    "prepare": "cd .. && husky install frontend/.husky",
+    "coverage": "cross-env BABEL_ENV=test jest --coverage",
+    "_lint": "eslint --config ./.eslintrc.json --ext js --ext jsx --ext tsx --ext ts",
+    "lint": "yarn run _lint -- ./src/",
+    "lint:fix": "yarn run _lint -- --fix ./src/"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -25,17 +27,20 @@
     "@testing-library/react": "^12.0.0",
     "autoprefixer": "^10.3.4",
     "babel-jest": "^27.0.6",
-    "concurrently": "^6.2.1",
     "cross-env": "^7.0.3",
-    "eslint": "^7.32.0",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react-important-stuff": "^3.0.0",
-    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "^7.0.2",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.6",
     "jest-cli": "^27.0.6",
-    "prettier": "^2.3.2",
+    "lint-staged": ">=10",
+    "prettier": "^2.4.1",
     "pretty-quick": "^3.1.1",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0",
@@ -48,10 +53,31 @@
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.0",
     "@mui/material": "^5.0.0",
+    "concurrently": "^6.3.0",
+    "eslint": "^7.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-react": "^7.21.5",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.3.0",
     "single-spa-react": "^4.3.1",
     "styled-components": "^5.3.1"
+  },
+  "lint-staged": {
+    "linters": {
+      "src/**/*.{js,ts,jsx,tsx}": [
+        "eslint --config ./.eslintrc.json --ext js --ext ts --ext jsx --ext tsx --fix",
+        "git add"
+      ],
+      "../backend/**/*.py": [
+        "source env/bin/activate",
+        "isort app/",
+        "black **/*.py",
+        "pylint --fail-under=7 **/*.py",
+        "pytest"
+      ]
+    },
+    "*.js": "eslint --cache --fix"
   }
 }

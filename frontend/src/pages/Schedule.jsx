@@ -1,17 +1,17 @@
+import React, { useState } from "react";
+
 import styled from "styled-components";
-import PluginSelect from "../components/custom/PluginSelect";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
-import PluginButton from "../components/custom/PluginButton";
-import Shift from "../components/Shift";
+import Overlay from "../components/overlay/Overlay";
+import PluginButton from "../components/plugin-button/PluginButton";
+import PluginSelect from "../components/plugin-select/PluginSelect";
+import Shift from "../components/shift/Shift";
+import Success from "../components/success/Success";
 import shiftsData from "../data";
-import { useState } from "react";
-import Overlay from "../components/Overlay";
-import ShiftForm from "../components/ShiftForm";
-import Success from "../components/Success";
 
 function Schedules() {
   const shifts = shiftsData;

@@ -1,7 +1,8 @@
+import React from "react"
 import styled from "styled-components";
 
 function Overlay() {
-  return <PageMask></PageMask>;
+  return <PageMask />;
 }
 
 export default Overlay;

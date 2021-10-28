@@ -1,10 +1,13 @@
+import React from "react";
+
+// import PropTypes from "prop-types";
 import styled from "styled-components";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
 
-function ShiftForm({ modal, setModal }) {
+function ShiftForm() {
   return (
     <FormContainer>
       <FormHeader>
@@ -48,7 +51,7 @@ function ShiftForm({ modal, setModal }) {
         <div>{/* Just here to push the next field to the right */}</div>
 
         <FormField>
-          <span></span>
+          <span />
           <div>
             <span>Add users</span>
             <GroupAddOutlinedIcon />
@@ -58,6 +61,11 @@ function ShiftForm({ modal, setModal }) {
     </FormContainer>
   );
 }
+
+// ShiftForm.propTypes = {
+//   modal: PropTypes.string.isRequired,
+//   setModal: PropTypes.func.isRequired
+// };
 
 export default ShiftForm;
 

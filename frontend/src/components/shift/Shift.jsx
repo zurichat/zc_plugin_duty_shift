@@ -1,4 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
+
+import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
@@ -28,6 +30,13 @@ function Shift({ avatar, name, start, end }) {
     </ShiftCard>
   );
 }
+
+Shift.propTypes = {
+  avatar: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  start: PropTypes.string.isRequired,
+  end: PropTypes.string.isRequired
+};
 
 export default Shift;
 
